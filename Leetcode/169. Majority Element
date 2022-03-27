@@ -1,0 +1,19 @@
+------------------------------Solution 1 : Basic ---------------------------------
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        out=0
+        temp={}
+        for i in nums:
+            if i not in temp.keys():
+                for j in nums:
+                    if i==j :
+                        out+=1
+
+            if out>len(nums)/2:
+                return i
+            else:
+                temp[i]=out
+            out=0
+            
+------------------------------Solution 1 : Basic ---------------------------------
