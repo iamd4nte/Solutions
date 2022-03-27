@@ -1,0 +1,58 @@
+---------------------------------------using LL--------------------------------------------
+class node:
+    def __init__(self,data1,data2):
+        self.data1=data1
+        self.data2=data2
+        self.next=None
+
+class MinStack:
+
+    def __init__(self):
+        self.head=None
+
+    def push(self, val: int) -> None:
+        if self.head==None:
+            new=node(val,val)
+            self.head=new
+        else:
+            new=node(val,min(self.head.data2,val))
+            new.next=self.head
+            self.head=new
+
+    def pop(self) -> None:
+        if self.head!=None:
+            self.head=self.head.next
+
+    def top(self) -> int:
+        return self.head.data1
+
+    def getMin(self) -> int:
+        return self.head.data2
+
+---------------------------------------using Array--------------------------------------------
+class MinStack:
+
+    def __init__(self):
+        self.stack=[]
+
+    def push(self, val: int) -> None:
+        if self.stack:
+            temp=self.stack[len(self.stack)-1][1]
+            if temp>val:
+                self.stack.append([val,val])
+            else:
+                self.stack.append([val,temp])
+            
+        else:
+            self.stack.append([val,val])
+
+    def pop(self) -> None:
+        if self.stack:
+            self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[len(self.stack)-1][0]
+
+    def getMin(self) -> int:
+        return self.stack[len(self.stack)-1][1]
+
