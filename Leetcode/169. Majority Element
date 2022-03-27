@@ -16,4 +16,16 @@ class Solution:
                 temp[i]=out
             out=0
             
-------------------------------Solution 1 : Basic ---------------------------------
+------------------------------Solution 1 : boyer-moore-majority-voting-algorithm ---------------------------------
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        temp = 0
+        ans = None
+
+        for num in nums:
+            if temp == 0:
+                ans = num
+            temp += (1 if num == ans else -1)
+
+        return ans
