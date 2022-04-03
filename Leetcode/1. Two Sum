@@ -1,0 +1,29 @@
+-----------------------------solution 1---------------------------------------
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d = {}
+        for i, n in enumerate(nums):
+            m = target - n
+            if m in d:
+                return [d[m], i]
+            else:
+                d[n] = i
+                
+-----------------------------solution 2--------------------------------------                
+                
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap={}
+        
+        for i,j in enumerate(nums):
+            hashmap[j]=i
+        
+        for i in range(len(nums)):
+            temp=target-nums[i]
+            
+            try:
+                if hashmap[temp] and hashmap[temp]!=i:
+                    return [i,hashmap[temp]]
+                
+            except:
+                continue
