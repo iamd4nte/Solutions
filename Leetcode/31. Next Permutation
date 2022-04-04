@@ -1,0 +1,36 @@
+class Solution:
+    def nextPermutation(self, nums) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l=len(nums)
+        flag=False
+        
+        if l==1 :
+            return
+        
+        #STEP 1: check the index(from right) where data(i)<data(i+1) 
+        
+        for i in range(l-2,-1,-1):
+            if nums[i]<nums[i+1]:
+                flag=True
+                break
+        if not flag:
+            nums.reverse()
+            return
+        
+        #STEP 2: check the smallest data(first smallest) than data(i) from right, then swap
+        
+        for j in range(l-1,i,-1):
+            if nums[i]<nums[j]:
+                nums[i],nums[j]=nums[j],nums[i]
+                break
+
+       #STEP 3: Reversing the part after the shuffle index(i) 
+    
+        i+=1
+        l-=1
+        while i < l:
+            nums[i],nums[l] = nums[l],nums[i]
+            i+= 1
+            l-= 1
