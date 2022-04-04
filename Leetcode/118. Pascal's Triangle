@@ -1,0 +1,14 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        
+        pt=list()
+        
+        for i in range(numRows):
+            pt.append([])
+            for j in range(i+1):
+                if j==0 or j==i :
+                    pt[i].append(1)
+                else:
+                    pt[i].append(pt[i-1][j-1]+pt[i-1][j])
+        
+        return pt
