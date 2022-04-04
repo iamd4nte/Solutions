@@ -1,0 +1,48 @@
+-------------------------------------solution 1-------------------------------------------
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        
+        largest_sum=nums[0]
+        temp=0     #we want to keep temp +ve, 0 if it goes -ve
+        
+        for i in range(len(nums)):
+            temp+=nums[i]
+            largest_sum=max(temp,largest_sum)
+            
+            if temp<0:
+                temp=0
+                
+        return largest_sum
+        
+ -------------------------------------solution 2: with subarray that produces the largest sum----------------------------------------
+ 
+ class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        
+        largest_sum=nums[0]
+        temp=0     #we want to keep temp +ve, 0 if it goes -ve
+        l=r=0
+        flag1=False #to assign left(l) boundry
+        flag2=False #for corner case of all negative numbers,we shift l to r
+        
+        for i in range(len(nums)):
+            temp+=nums[i]
+            
+            if temp>largest_sum: 
+                largest_sum=temp
+                r=i
+            
+            if temp<=0:
+                temp=0
+                flag1=False
+            else:
+                if not flag1:
+                    l=i
+                flag1=True
+                flag2=True
+                
+        if not flag2:
+            l=r
+        print(f'Sub-Array {nums[l:r+1]} has the largest sum of {largest_sum}')
+        return largest_sum
